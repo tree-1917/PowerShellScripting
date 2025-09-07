@@ -73,4 +73,69 @@ $ Get-Process | Sort-Object -Property WorkingSet -Descending | Select-Object -Fi
 # Select-Object -> takes only n items from set of items  
 ```
 
+> Getting Help  ? 
 
+```ps1
+# How to get help for any command 
+$ get-help  get-service 
+# How to find process which take cpu time greater than 100 
+$ get-process | where-object { $_.cpu -gt 100 }  
+```
+
+
+> What is **Cmdlets** ? 
+
+- Lightweight command used within the Windows Powershell environment to Perform specific tasks . 
+
+
+> What is **Alias** ? 
+
+- Alternate name or nickname for a **cmdlet**, **function**, **script**. 
+
+```ps1 
+# How to List All Powershell Commands 
+$ Get-Command  # powershell 
+$ compgen -c   # Bash 
+
+# How to Find all Command With alias 
+$ Get-Alias    # powershell
+$ compgen -a   # Bash  
+
+# How To Show only Builtins Commands 
+$ compgen -b 
+$ Get-Commnad -CommandType Cmdlet 
+
+# Enable Hyper-V 
+$ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+
+# Enable PowerShell Managment for Hyper-V 
+$ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Management-PowerShell -All
+
+# Check If Hyper-V Exists 
+$ Get-Module -ListAvailable | Where-Object { $_.Name -like "Hyper-V" }
+
+# How To Configures a Virtual Machine 
+$ Get-Help Set-Vm            
+
+# How To Install Package Via Winget **Offical Window Package Manager** ? 
+$ winget install --id Git.Git -e --source winget
+
+# Install Ubuntu Iso In Windows With **winget** ? 
+$ wget -Uri "https://releases.ubuntu.com/22.04/ubuntu-22.04.5-desktop-amd64.iso" -OutFile "C:\ISOs\ubuntu-22.04.iso"
+
+# How To Check If Folder is Exist 
+$ New-Item -ItemType Directory -Path "C:\ISOs" -Force 
+
+```
+
+> What is URI ? 
+
+- Uniform Resource Identifier
+
+
+> More About PowerShell Commands 
+
+```ps1 
+# How to find the all Service In Windows System Which `Stopped` and Starting Type `Auto` 
+$ Get-Service | Select-Object name,Status, StartType | Where-Object  { $_.Status -ne "Running"  -and $_.StartType -eq "Auto"}
+```
